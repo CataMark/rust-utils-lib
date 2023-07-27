@@ -1,0 +1,21 @@
+[package]
+name = "utils"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+flexi_logger = { version = "0.24.2", features = ["async"], optional = true }
+log = { version = "0.4.17", optional = true }
+lettre = { version = "0.10.0", optional = true }
+data-encoding = { version = "2.3.2", optional = true }
+openssl = { version = "0.10.40", optional = true } # needs installation of openssl
+thiserror = { version= "1.0.38" }
+
+[features]
+default = ["envars", "logger", "mailer", "rsakeys"]
+envars = []
+logger = ["dep:flexi_logger", "dep:log"]
+mailer = ["dep:lettre"]
+rsakeys = ["dep:data-encoding", "dep:openssl"]
